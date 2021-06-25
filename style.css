@@ -1,0 +1,40 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 50px;
+}
+
+#restartBtnContainer {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#game-board-wrapper {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-board-container {
+    display: grid;
+    grid-Template-Columns: repeat(3, 1fr);
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    height: 100px;
+    width: 100px;
+    outline: solid;
+}
