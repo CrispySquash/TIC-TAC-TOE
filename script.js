@@ -5,17 +5,14 @@ const playerObject = (name, sign) => {
 const gameBoard = (() => {
   let boardArray = ['', '', '', '', '', '', '', '', '']
 
-  let square0 = document.getElementById('square-0');
-  let square1 = document.getElementById('square-1');
-  let square2 = document.getElementById('square-2');
-  let square3 = document.getElementById('square-3');
-  let square4 = document.getElementById('square-4');
-  let square5 = document.getElementById('square-5');
-  let square6 = document.getElementById('square-6');
-  let square7 = document.getElementById('square-7');
-  let square8 = document.getElementById('square-8');
+  let square = document.getElementsByClassName('.square');
+  let boardContainer = document.getElementById('#game-board-container');
 
-  square1.innerHTML = 'X';
+  square.addEventListener('click', function(e){
+    if(e.innerHTML == '' && turn % 2 !== 0){
+
+    }
+  })
 
   //code to allow players to mark spots on board (we'll need to update the boardArray with their choices)
   //need to set code that check for what div the player has selected inside the game-board-container id and mark that square
