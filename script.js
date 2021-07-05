@@ -2,17 +2,28 @@ const playerObject = (name, sign) => {
   return { name, sign };
 };
 
+//setting turns as global variable
+let turn = 1;
+
 const gameBoard = (() => {
   let boardArray = ['', '', '', '', '', '', '', '', '']
 
-  let square = document.getElementsByClassName('.square');
+  let square = document.getElementsByClassName('square');
   let boardContainer = document.getElementById('#game-board-container');
 
-  square.addEventListener('click', function(e){
-    if(e.innerHTML == '' && turn % 2 !== 0){
-
-    }
-  })
+  //adding event listeners to allow players to mark board
+  for (var i = 0; i < square.length; i++) {
+    square[i].addEventListener('click', function () {
+      if (this.innerHTML == '' && turn % 2 !== 0) {
+        this.innerHTML = 'X';
+        turn++;
+      }
+      else if (this.innerHTML == '' && turn % 2 == 0) {
+        this.innerHTML = 'O';
+        turn++;
+      }
+    });
+  }
 
   //code to allow players to mark spots on board (we'll need to update the boardArray with their choices)
   //need to set code that check for what div the player has selected inside the game-board-container id and mark that square
@@ -28,8 +39,6 @@ const gameLogic = (() => {
   //create players
   const player1 = playerObject('player 1', 'X');
   const player2 = playerObject('Player 2', 'O');
-  //set initial turn
-  let turn = 1;
   //set win to false
   let win = false;
   //set taking turns logic/symbol switching
