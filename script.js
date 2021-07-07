@@ -2,11 +2,8 @@ const playerObject = (name, sign) => {
   return { name, sign };
 };
 
-//setting turns as global variable
-let turn = 1;
-
 const gameBoard = (() => {
-  let boardArray = ['', '', '', '', '', '', '', '', '']
+  let boardArray = ['', '', '', '', '', '', '', '', ''];
 
   let square = document.getElementsByClassName('square');
   let boardContainer = document.getElementById('#game-board-container');
@@ -14,16 +11,19 @@ const gameBoard = (() => {
   //adding event listeners to allow players to mark board
   for (var i = 0; i < square.length; i++) {
     square[i].addEventListener('click', function () {
-      if (this.innerHTML == '' && turn % 2 !== 0) {
+      if (this.innerHTML == '' && gameLogic.turn % 2 !== 0) {
         this.innerHTML = 'X';
-        turn++;
+        boardArray[this.id] = 'X';
+        gameLogic.turn++;
       }
-      else if (this.innerHTML == '' && turn % 2 == 0) {
+      else if (this.innerHTML == '' && gameLogic.turn % 2 == 0) {
         this.innerHTML = 'O';
-        turn++;
+        boardArray[this.id] = 'O';
+        gameLogic.turn++;
       }
     });
   }
+
 
   //code to allow players to mark spots on board (we'll need to update the boardArray with their choices)
   //need to set code that check for what div the player has selected inside the game-board-container id and mark that square
@@ -32,16 +32,20 @@ const gameBoard = (() => {
   //code to restart game/gameboard when selecting reset button
   //
 
-
+  return { boardArray };
+  
 })();
 
 const gameLogic = (() => {
   //create players
   const player1 = playerObject('player 1', 'X');
   const player2 = playerObject('Player 2', 'O');
+
   //set win to false
   let win = false;
-  //set taking turns logic/symbol switching
+
+  //set turn counter
+  let turn = 1;
 
   //set win conditions
   const winConditions =
@@ -55,7 +59,12 @@ const gameLogic = (() => {
       [1, 4, 7],
       [2, 5, 8],
     ]
+
   //set check for win logic
+
   //set check for tie logic
+
+  return { turn };
+
 })();
 
