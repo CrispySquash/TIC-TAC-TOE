@@ -15,25 +15,21 @@ const gameBoard = (() => {
         this.innerHTML = 'X';
         boardArray[this.id] = 'X';
         gameLogic.turn++;
+        if(gameLogic.checkWinXSquare()){console.log('Win')}
       }
       else if (this.innerHTML == '' && gameLogic.turn % 2 == 0) {
         this.innerHTML = 'O';
         boardArray[this.id] = 'O';
         gameLogic.turn++;
+        if(gameLogic.checkWinOSquare()){console.log('Win')}
       }
     });
   }
 
-
-  //code to allow players to mark spots on board (we'll need to update the boardArray with their choices)
-  //need to set code that check for what div the player has selected inside the game-board-container id and mark that square
-  //with their sign. plus update the array
-
   //code to restart game/gameboard when selecting reset button
-  //
 
   return { boardArray };
-  
+
 })();
 
 const gameLogic = (() => {
@@ -62,9 +58,32 @@ const gameLogic = (() => {
 
   //set check for win logic
 
+  function checkWinXSquare() {
+    return winConditions.some((combination) => {
+      return combination.every((i) => {
+        return gameBoard.boardArray[i] == "X";
+      });
+    });
+  }
+
+  function checkWinOSquare() {
+    return winConditions.some((combination) => {
+      return combination.every((i) => {
+        return gameBoard.boardArray[i] == "O";
+      });
+    });
+  }
+
+  // function isTieSquare() {
+  //   return squares.every((square) => {
+  //     return square.innerText === "X" || square.innerText === "O";
+  //   });
+  // }
+
+
   //set check for tie logic
 
-  return { turn };
+  return { turn, checkWinXSquare, checkWinOSquare, winConditions };
 
 })();
 
